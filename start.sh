@@ -1,9 +1,11 @@
 #!/bin/bash
 
-echo "Railway PORT is: $PORT"
+echo "PORT=$PORT"
 
 exec ttyd \
   --writable \
+  --check-origin=false \
+  --once=false \
   --interface 0.0.0.0 \
-  --port "${PORT}" \
-  /bin/bash
+  --port "$PORT" \
+  bash
