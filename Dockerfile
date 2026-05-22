@@ -4,7 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt upgrade -y && \
     apt install -y \
-    ttyd \
     bash \
     curl \
     wget \
@@ -16,8 +15,14 @@ RUN apt update && apt upgrade -y && \
     sudo \
     openssh-server \
     python3 \
-    python3-pip && \
+    python3-pip \
+    xz-utils && \
     apt clean
+
+# Install ttyd manually
+RUN wget https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.x86_64 \
+    -O /usr/local/bin/ttyd && \
+    chmod +x /usr/local/bin/ttyd
 
 RUN useradd -m -s /bin/bash kali && \
     echo 'kali:kali' | chpasswd && \
