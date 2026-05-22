@@ -1,10 +1,9 @@
 #!/bin/bash
 
-export PORT=${PORT:-7681}
-
-echo "Starting ttyd on port ${PORT}"
+echo "Railway PORT is: $PORT"
 
 exec ttyd \
   --writable \
-  --port ${PORT} \
+  --interface 0.0.0.0 \
+  --port "${PORT}" \
   /bin/bash
